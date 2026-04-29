@@ -12,6 +12,25 @@ dist
 dist-ssr
 *.local
 
+# Agent / Tooling
+.agent/
+.agents/
+.kiro/
+.claude/
+.claude-plugin/
+.gemini/
+agents/
+hooks/
+plugins/
+skill-creator/
+skills/
+.agent
+.kiro
+.agents
+.claude
+.claude-plugin
+.gemini
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
