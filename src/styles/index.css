@@ -18,6 +18,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 html, body, #root {
@@ -33,12 +38,14 @@ body {
 
 /* ───────────────────────────── LAYOUT ───────────────────────────── */
 .centered {
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px 20px;
+  padding: 20px;
 }
 
 .room-container {
@@ -92,6 +99,11 @@ form {
   text-align: center;
   outline: none;
   transition: border-color 0.25s, box-shadow 0.25s;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
 }
 
 .answer-input:focus {

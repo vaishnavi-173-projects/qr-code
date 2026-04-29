@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { rooms } from "../data/rooms";
 
@@ -10,6 +10,25 @@ const Room = () => {
   const [status, setStatus] = useState(null); // null | "correct" | "wrong"
   const [showHint, setShowHint] = useState(false);
   const [shakeKey, setShakeKey] = useState(0); // increment to re-trigger shake
+  
+  useEffect(() => {
+    const blockCopy = (e) => {
+      if ((e.ctrlKey || e.metaKey) && 
+          ['c','x','a','u','s'].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+    };
+
+    const blockContext = (e) => e.preventDefault();
+
+    document.addEventListener('contextmenu', blockContext);
+    document.addEventListener('keydown', blockCopy);
+
+    return () => {
+      document.removeEventListener('contextmenu', blockContext);
+      document.removeEventListener('keydown', blockCopy);
+    };
+  }, []);
 
   if (!room) {
     return (
@@ -39,7 +58,16 @@ const Room = () => {
   const isWrong = status === "wrong";
 
   return (
-    <div className="centered">
+    <div 
+      className="centered" 
+      onContextMenu={(e) => e.preventDefault()}
+      onTouchStart={(e) => {
+        // Only prevent default if it's not the input field to allow focusing
+        if (e.target.tagName !== 'INPUT') {
+          // This helps block long-press selection on mobile
+        }
+      }}
+    >
       <div className="room-container">
         <h1>Puzzle Room</h1>
 
