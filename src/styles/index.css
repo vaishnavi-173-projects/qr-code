@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+  --bg: #0a0a0a;
+  --bg-card: #141414;
+  --bg-input: #0e0e0e;
+  --primary: #00ff88;
+  --primary-dim: rgba(0, 255, 136, 0.15);
+  --error: #ff4444;
+  --error-dim: rgba(255, 68, 68, 0.1);
+  --text: #ffffff;
+  --text-dim: #888;
+  --border: #2a2a2a;
+  --glow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ───────────────────────────── LAYOUT ───────────────────────────── */
+.centered {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+.room-container {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ───────────────────────────── ROOM ───────────────────────────── */
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--primary);
+  text-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
+  letter-spacing: 0.08em;
+}
+
+.puzzle-box {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.puzzle {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #e0e0e0;
+  white-space: pre-wrap;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.answer-input {
+  width: 100%;
+  background: var(--bg-input);
+  color: var(--primary);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 1.2rem;
+  font-family: 'Share Tech Mono', monospace;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.answer-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.25);
+}
+
+.submit-btn {
+  width: 100%;
+  background: var(--primary);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: 'Share Tech Mono', monospace;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.submit-btn:hover {
+  box-shadow: var(--glow);
+  transform: translateY(-2px);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.hint-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.hint-btn:hover {
+  color: var(--text);
+}
+
+.hint-text {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  text-align: center;
+  line-height: 1.6;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.error-msg {
+  color: var(--error);
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Correct result box */
+.result-box.correct {
+  width: 100%;
+  background: var(--primary-dim);
+  border: 2px solid var(--primary);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  font-size: 1.3rem;
+  color: var(--primary);
+  animation: fadeInUp 0.5s ease-out, glowPulse 2s ease-in-out infinite;
+}
+
+.check-icon {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+/* ───────────────────────────── QR CODES PAGE ───────────────────────────── */
+.qrcodes-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 30px;
+}
+
+.print-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.print-header h1 {
+  font-size: 2rem;
+}
+
+.print-btn {
+  background: var(--primary);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: 'Share Tech Mono', monospace;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.print-btn:hover {
+  box-shadow: var(--glow);
+  transform: translateY(-2px);
+}
+
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 800px) {
+  .qr-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .qr-grid {
+    grid-template-columns: 1fr;
+  }
+  .print-header {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+.qr-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.qr-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+}
+
+.qr-label {
+  font-size: 1.2rem;
+  color: var(--primary);
+  letter-spacing: 0.06em;
+}
+
+.qr-url {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  word-break: break-all;
+  text-align: center;
+}
+
+/* ───────────────────────────── ANIMATIONS ───────────────────────────── */
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  15%  { transform: translateX(-10px); }
+  30%  { transform: translateX(10px); }
+  45%  { transform: translateX(-8px); }
+  60%  { transform: translateX(8px); }
+  75%  { transform: translateX(-4px); }
+  90%  { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.45s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(0, 255, 136, 0.3); }
+  50%       { box-shadow: 0 0 30px rgba(0, 255, 136, 0.6); }
+}
+
+/* ───────────────────────────── PRINT ───────────────────────────── */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .print-btn {
+    display: none !important;
+  }
+  .qrcodes-page {
+    padding: 20px;
+  }
+  .print-header h1 {
+    color: #000;
+    text-shadow: none;
+  }
+  .qr-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .qr-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+  }
+  .qr-label {
+    color: #000;
+  }
+  .qr-url {
+    color: #666;
+  }
+}
