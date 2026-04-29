@@ -1,8 +1,8 @@
 export const rooms = {
   "asf014": {
     title: "ASF-014",
-    puzzle: "A vault can only be opened by the decimal value of the XOR of these two binary numbers:\n\n01011011\n01010001\n\nXOR them bit by bit, then convert the result to decimal.",
-    hint: "XOR rule: 0 XOR 0 = 0, 1 XOR 1 = 0, 0 XOR 1 = 1. Do it bit by bit then convert.",
+    puzzle: "A vault can only be opened by the decimal value of the XOR of these two binary numbers:\n\n00111100\n00110010\n\nXOR them bit by bit, then convert the result to decimal.",
+    hint: "XOR rule: same bits = 0, different bits = 1. Do it bit by bit then convert to decimal.",
     answer: "14",
     code: "ASF - 014"
   },
@@ -36,8 +36,8 @@ export const rooms = {
   },
   "ctf005": {
     title: "CTF-005",
-    puzzle: "A cybercriminal left this clue:\n\n'I am the only single-digit number whose binary representation is BOTH a palindrome AND contains exactly two 1-bits. Find me.'\n\nWhat is the number?",
-    hint: "Write out single digit numbers in binary. Check which ones read the same forwards and backwards AND have exactly two 1s.",
+    puzzle: "A cybercriminal left this clue:\n\n'I am a single-digit number.\nMy binary form is a palindrome.\nI have exactly two 1-bits.\nMy binary representation has exactly 3 digits.'\n\nWhat is the number?",
+    hint: "Write single digit numbers in binary. Find the one that reads same forwards and backwards, has exactly two 1s, and is exactly 3 digits long in binary.",
     answer: "5",
     code: "CTF - 005"
   }
